@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Test Suite</title>
+<link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.20.0.css">
+
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="https://code.jquery.com/qunit/qunit-2.20.0.js"></script>
+</body>
+<script>
+    function add(a, b) {
+        return a + b;
+    }
+    function fizzbuzz(n) {
+        output = ''
+        if (n % 3 == 0 || n.toString().includes('3')) {
+            output = 'fizz';
+        }
+        if (n % 5 == 0 || n.toString().includes('5')) {
+            output += 'buzz';
+        }
+
+        if (output != '') {
+            return output;
+        }
+        else {
+            return n;
+        }
+    }
+
+
+    QUnit.module('fizzbuzz test', function () {
+        QUnit.test('egy', function (assert) {
+            assert.equal(fizzbuzz(1), '1');
+        });
+
+
+        QUnit.test('ketto', function (assert) {
+            assert.equal(fizzbuzz(2), '2');
+        });
+
+        QUnit.test('harom', function (assert) {
+            assert.equal(fizzbuzz(3), 'fizz');
+        });
+
+        QUnit.test('negy', function (assert) {
+            assert.equal(fizzbuzz(4), '4');
+        });
+
+        QUnit.test('ot', function (assert) {
+            assert.equal(fizzbuzz(5), 'buzz');
+        });
+
+        QUnit.test('hat', function (assert) {
+            assert.equal(fizzbuzz(6), 'fizz');
+        });
+
+        QUnit.test('tizenharom', function (assert) {
+            assert.equal(fizzbuzz(13), 'fizz');
+        });
+
+        QUnit.test('tizenot', function (assert) {
+            assert.equal(fizzbuzz(15), 'fizzbuzz');
+        });
+
+        QUnit.test('otvenegy', function (assert) {
+            assert.equal(fizzbuzz(51), 'fizzbuzz');
+        });
+    });
+
+</script>
