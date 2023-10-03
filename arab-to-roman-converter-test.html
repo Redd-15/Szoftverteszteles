@@ -11,16 +11,23 @@
 <script>
     function arabToRoman(n) {
         output = ""
-        for (let i = 0; i < n; i++) {
-            output += "I"
-            
+
+        if (n < 4) {
+            for (let i = 0; i < n; i++) {
+                output += "I"
+
+            }
         }
 
-        if (n == 4) {return "IV"}
-        if (n == 5) {return "V"}
-        if (n == 6) {return "VI"}
-        if (n == 7) {return "VII"}
-        if (n == 8) {return "VIII"}
+        else if (n == 4) { return "IV" }
+
+        else if (n >= 5) {
+            output = "V"
+            for (let i = 0; i < n-5; i++) {
+                output += "I"
+
+            }
+        }
 
         return output
     }
