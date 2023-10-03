@@ -21,13 +21,15 @@
 
         else if (n == 4) { return "IV" }
 
-        else if (n >= 5) {
+        else if (n >= 5 && n < 9) {
             output = "V"
             for (let i = 0; i < n-5; i++) {
                 output += "I"
 
             }
         }
+
+        else if (n == 9){return "IX"}
 
         return output
     }
@@ -70,6 +72,9 @@
             assert.equal(arabToRoman(8), 'VIII');
         });
 
+        QUnit.test('kilenc', function (assert) {
+            assert.equal(arabToRoman(9), 'IX');
+        });
     });
 
 </script>
