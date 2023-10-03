@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Test Suite</title>
+<link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.20.0.css">
+
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="https://code.jquery.com/qunit/qunit-2.20.0.js"></script>
+</body>
+<script>
+    function arabToRoman(n) {
+        if (n == 0){return ''}
+    }
+
+
+    QUnit.module('ArabToToman test', function () {
+        QUnit.test('nulla', function (assert) {
+            assert.equal(arabToRoman(0), '');
+        });
+
+    });
+
+</script>
