@@ -12,6 +12,7 @@
     function arabToRoman(n) {
         if      (n == 0){return ''}
         else if (n == 1){return 'I'}
+        else if (n == 2){return 'II'}
     }
 
 
@@ -22,6 +23,10 @@
 
         QUnit.test('egy', function (assert) {
             assert.equal(arabToRoman(1), 'I');
+        });
+
+        QUnit.test('ketto', function (assert) {
+            assert.equal(arabToRoman(2), 'II');
         });
 
     });
