@@ -10,10 +10,12 @@
 </body>
 <script>
     function arabToRoman(n) {
-        if      (n == 0){return ''}
-        else if (n == 1){return 'I'}
-        else if (n == 2){return 'II'}
-        else if (n == 3){return 'III'}
+        output = ""
+        for (let i = 0; i < n; i++) {
+            output += "I"
+            
+        }
+        return output
     }
 
 
@@ -33,6 +35,7 @@
         QUnit.test('harom', function (assert) {
             assert.equal(arabToRoman(3), 'III');
         });
+
 
     });
 
