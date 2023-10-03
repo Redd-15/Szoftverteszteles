@@ -13,7 +13,12 @@
         output = ""
 
         while (n > 0){
-            if (n >= 10){
+            
+            if (n >= 40){
+                output += "XL"
+                n -= 40
+            }
+            else if (n >= 10){
                 output += "X"
                 n -= 10
             }
@@ -98,6 +103,10 @@
 
         QUnit.test('huszonkilenc', function (assert) {
             assert.equal(arabToRoman(29), 'XXIX');
+        });
+
+        QUnit.test('negyvennyolc', function (assert) {
+            assert.equal(arabToRoman(48), 'XLVIII');
         });
     });
 
