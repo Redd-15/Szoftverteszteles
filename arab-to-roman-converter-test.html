@@ -12,42 +12,30 @@
     function arabToRoman(n) {
         output = ""
 
-        while (n > 0){
-            if (n >= 100){
-                output += "C"
-                n -= 100
-            }
-            else if (n >= 90){
-                output += "XC"
-                n -= 90
-            }
-            else if (n >= 50){
-                output += "L"
-                n -= 50
-            }
-            else if (n >= 40){
-                output += "XL"
-                n -= 40
-            }
-            else if (n >= 10){
-                output += "X"
-                n -= 10
-            }
-            else if ( n >= 9){
-                output += "IX"
-                n -= 9
-            }
-            else if ( n >= 5){
-                output += "V"
-                n -= 5
-            }
-            else if ( n >= 4){
-                output += "IV"
-                n -= 4
-            }
-            else if ( n >= 1){
-                output += "I"
-                n -= 1
+        const rules = {
+            "C" : 100,
+            "XC": 90,
+            "L" : 50,
+            "XL": 40,
+            "X" : 10,
+            "IX": 9,
+            "V" : 5,
+            "IV": 4,
+            "I" : 1
+
+        }
+
+        roman_rules = Object.keys(rules);
+
+        while (n > 0) {
+            for (let index = 0; index < roman_rules.length; index++) {
+                val = rules[roman_rules[index]];
+                if (n >= val) {
+                    output += roman_rules[index]
+                    n -= val
+                    break;
+                }
+
             }
         }
 
