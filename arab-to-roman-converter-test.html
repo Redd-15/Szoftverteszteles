@@ -19,6 +19,7 @@
         if (n == 4) {return "IV"}
         if (n == 5) {return "V"}
         if (n == 6) {return "VI"}
+        if (n == 7) {return "VII"}
 
         return output
     }
@@ -52,6 +53,12 @@
         QUnit.test('hat', function (assert) {
             assert.equal(arabToRoman(6), 'VI');
         });
+
+        QUnit.test('het', function (assert) {
+            assert.equal(arabToRoman(7), 'VII');
+        });
+
+
 
     });
 
