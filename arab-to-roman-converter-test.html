@@ -20,6 +20,7 @@
         if (n == 5) {return "V"}
         if (n == 6) {return "VI"}
         if (n == 7) {return "VII"}
+        if (n == 8) {return "VIII"}
 
         return output
     }
@@ -58,7 +59,9 @@
             assert.equal(arabToRoman(7), 'VII');
         });
 
-
+        QUnit.test('nyolc', function (assert) {
+            assert.equal(arabToRoman(8), 'VIII');
+        });
 
     });
 
