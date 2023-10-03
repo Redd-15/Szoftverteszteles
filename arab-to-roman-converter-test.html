@@ -13,6 +13,7 @@
         output = ""
 
         const rules = {
+            "D" : 500,
             "CD": 400,
             "C" : 100,
             "XC": 90,
@@ -135,6 +136,10 @@
 
         QUnit.test('negyszazotvennyolc', function (assert) {
             assert.equal(arabToRoman(458), 'CDLVIII');
+        });
+
+        QUnit.test('otszazotvennyolc', function (assert) {
+            assert.equal(arabToRoman(558), 'DLVIII');
         });
     });
 
