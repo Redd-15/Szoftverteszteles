@@ -13,6 +13,7 @@
         if      (n == 0){return ''}
         else if (n == 1){return 'I'}
         else if (n == 2){return 'II'}
+        else if (n == 3){return 'III'}
     }
 
 
@@ -27,6 +28,10 @@
 
         QUnit.test('ketto', function (assert) {
             assert.equal(arabToRoman(2), 'II');
+        });
+
+        QUnit.test('harom', function (assert) {
+            assert.equal(arabToRoman(3), 'III');
         });
 
     });
