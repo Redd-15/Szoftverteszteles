@@ -13,7 +13,11 @@
         output = ""
 
         while (n > 0){
-            if (n >= 90){
+            if (n >= 100){
+                output += "C"
+                n -= 100
+            }
+            else if (n >= 90){
                 output += "XC"
                 n -= 90
             }
@@ -126,6 +130,10 @@
 
         QUnit.test('kilencvenot', function (assert) {
             assert.equal(arabToRoman(95), 'XCV');
+        });
+
+        QUnit.test('szazotvennyolc', function (assert) {
+            assert.equal(arabToRoman(158), 'CLVIII');
         });
     });
 
