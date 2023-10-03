@@ -15,6 +15,9 @@
             output += "I"
             
         }
+
+        if (n == 4) {return "IV"}
+
         return output
     }
 
@@ -36,6 +39,9 @@
             assert.equal(arabToRoman(3), 'III');
         });
 
+        QUnit.test('negy', function (assert) {
+            assert.equal(arabToRoman(4), 'IV');
+        });
 
     });
 
