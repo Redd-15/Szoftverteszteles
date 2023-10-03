@@ -10,13 +10,18 @@
 </body>
 <script>
     function arabToRoman(n) {
-        if (n == 0){return ''}
+        if      (n == 0){return ''}
+        else if (n == 1){return 'I'}
     }
 
 
     QUnit.module('ArabToToman test', function () {
         QUnit.test('nulla', function (assert) {
             assert.equal(arabToRoman(0), '');
+        });
+
+        QUnit.test('egy', function (assert) {
+            assert.equal(arabToRoman(1), 'I');
         });
 
     });
