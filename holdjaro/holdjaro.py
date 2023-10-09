@@ -1,16 +1,13 @@
 import numpy as np
 
 
-MAP = "00000000|00000000|00000000|00000000|00000000|00000000|00000000|00000000|"
-MAPSHAPE = [8,8]
+class moonRover():
 
-
-class holdjaro():
-
-    def __init__(self):
+    def __init__(self, mapSize):
         self.coord = [0, 0]
         self.direction = "N"
-        self.map = np.zeros((8, 8))
+        self.mapShape = mapSize
+        self.map = np.zeros(self.mapShape)
 
     def step(self, dir):
         if dir == "f":
@@ -19,10 +16,17 @@ class holdjaro():
             self.coord[1] = self.coord[1] - 1
 
 
+
 class map():
 
     def __init__(self):
-        self.map = np.zeros((8, 8))
+
+        MAP = "00000000|00000000|00000000|00000000|00000000|00000000|00000000|00000000|"
+        MAPSHAPE = (8,8)
+
+        self.shape = MAPSHAPE
+        self.map = np.zeros(self.shape)
+        
         x = 0
         y = 0
         for i in MAP:
@@ -35,4 +39,5 @@ class map():
 
         
 
-x = map()
+myMap = map()
+myMoonRover = moonRover(myMap.shape)
