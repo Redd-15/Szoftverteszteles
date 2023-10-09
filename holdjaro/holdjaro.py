@@ -6,12 +6,13 @@ MAP = "00000000|00000000|00000000|00000000|00000000|00000000|00000000|00000000|"
 class holdjaro():
 
     def __init__(self):
-        self.coord = (0, 0)
+        self.coord = [0, 0]
         self.direction = "N"
         self.map = np.zeros((8, 8))
 
     def step(self, dir):
-        return
+        if dir == "f":
+            self.coord[1] = self.coord[1] + 1
 
 
 class map():
@@ -31,4 +32,3 @@ class map():
         
 
 x = map()
-print (x.map)
