@@ -12,6 +12,8 @@ class moonRover():
     def step(self, dir):
         if dir == "f":
             self.coord[1] = self.coord[1] + 1
+            if self.coord[1] == self.mapShape[1]:
+                self.coord[1] = 0
         if dir == "b":
             self.coord[1] = self.coord[1] - 1
 

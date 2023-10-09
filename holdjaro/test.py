@@ -17,5 +17,12 @@ class TestSum(unittest.TestCase):
         x.step("b")
         self.assertEqual(x.coord,[4,3])
 
+    def test_forwards_step_edge(self):
+        myMap = h.map()
+        x = h.moonRover(myMap.shape)
+        x.coord = [0,7]
+        x.step("f")
+        self.assertEqual(x.coord,[0,0])
+
 if __name__ == '__main__':
     unittest.main()
