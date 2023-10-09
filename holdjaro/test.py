@@ -9,6 +9,10 @@ class TestSum(unittest.TestCase):
         x.step("f")
         self.assertEqual(x.coord,[0,1])
 
+    def test_backwards_step(self):
+        x = h.holdjaro()
+        x.step("b")
+        self.assertEqual(x.coord,[0,8])
 
 if __name__ == '__main__':
     unittest.main()

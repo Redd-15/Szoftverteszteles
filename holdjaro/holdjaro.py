@@ -2,6 +2,8 @@ import numpy as np
 
 
 MAP = "00000000|00000000|00000000|00000000|00000000|00000000|00000000|00000000|"
+MAPSHAPE = [8,8]
+
 
 class holdjaro():
 
@@ -13,6 +15,8 @@ class holdjaro():
     def step(self, dir):
         if dir == "f":
             self.coord[1] = self.coord[1] + 1
+        if dir == "b":
+            self.coord[1] = self.coord[1] - 1
 
 
 class map():
