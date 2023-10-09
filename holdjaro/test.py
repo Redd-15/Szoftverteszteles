@@ -38,5 +38,13 @@ class TestSum(unittest.TestCase):
         self.assertEqual(x.coord,[0,0])
         self.assertEqual(x.direction, "W")
 
+    def test_turn_right(self):
+        myMap = h.map()
+        x = h.moonRover(myMap.shape)
+        x.coord = [0,0]
+        x.turn("r")
+        self.assertEqual(x.coord,[0,0])
+        self.assertEqual(x.direction, "E")
+
 if __name__ == '__main__':
     unittest.main()
