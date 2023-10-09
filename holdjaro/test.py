@@ -24,5 +24,12 @@ class TestSum(unittest.TestCase):
         x.step("f")
         self.assertEqual(x.coord,[0,0])
 
+    def test_backwards_step_edge(self):
+        myMap = h.map()
+        x = h.moonRover(myMap.shape)
+        x.coord = [0,0]
+        x.step("b")
+        self.assertEqual(x.coord,[0,7])
+
 if __name__ == '__main__':
     unittest.main()
