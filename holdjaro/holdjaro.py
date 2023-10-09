@@ -19,6 +19,9 @@ class moonRover():
             if self.coord[1] == -1:
                 self.coord[1] = self.mapShape[1] - 1
 
+    def turn(self, dir):
+        if dir == "l":
+            self.direction = "W"
 
 
 class map():
