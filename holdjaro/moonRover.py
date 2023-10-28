@@ -24,6 +24,19 @@ class moonRover():
         elif dir == "r":
             self.direction = "E"
 
+    def getCoordInFront(self):
+        localCoord = self.coord
+        
+        if self.direction == "N":
+            localCoord[0] +=1
+        elif self.direction == "S":
+            localCoord[0] -=1
+        elif self.direction == "E":
+            localCoord[1] +=1
+        elif self.direction == "W":
+            localCoord[1] -=1
+        
+        return localCoord
 
 class map():
 

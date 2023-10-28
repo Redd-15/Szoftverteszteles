@@ -57,6 +57,13 @@ class TestSum(unittest.TestCase):
        myMap = moonRover.map(givenMap)
        self.assertEqual(myMap.getMapAsString(), givenMap)
        self.assertEqual(myMap.getMapShape(), (10,9))
-
+       
+    def test_in_front_coords(self):
+        myMap = moonRover.map()
+        rover = moonRover.moonRover(myMap.getMapShape())
+        rover.coord = [0,2]
+        rover.turn("r")
+        self.assertEqual(rover.getCoordInFront(), [0,3])
+        
 if __name__ == '__main__':
     unittest.main()
