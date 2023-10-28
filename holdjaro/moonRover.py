@@ -6,24 +6,23 @@ class self_driving_module():
         self.map = map
         
     def drive_full_length(self):
-        for i in range(self.rover.map.getMapShape()[1]-1):
+        for i in range(self.rover.map.getMapShape()[0]-1):
             self.rover.step("f")
         
     def drive_full_length_circle(self):
-        for i in range(self.rover.map.getMapShape()[1]-1):
+        for i in range(self.rover.map.getMapShape()[0]-1):
             self.rover.step("f")
         self.rover.turn("l")
         self.rover.step("f")
         self.rover.turn("l")
-        for i in range(self.rover.map.getMapShape()[1]-1):
+        for i in range(self.rover.map.getMapShape()[0]-1):
             self.rover.step("f")
             
     def drive_full_map(self):
         while self.rover.map.getMapAsString().count("0") > 0:
-            for i in range(self.rover.map.getMapShape()[1]-1):
+            for i in range(self.rover.map.getMapShape()[0]-1):
                 self.rover.step("f")
             self.rover.turnAround()
-            print(self.rover.map.map)
 
 class moonRover():
 
@@ -56,12 +55,12 @@ class moonRover():
         
         
         if self.coord[1] < 0:
-            self.coord[1] = self.map.getMapShape()[1] - 1
-        elif self.coord[1] == self.map.getMapShape()[1]:
+            self.coord[1] = self.map.getMapShape()[0] - 1
+        elif self.coord[1] == self.map.getMapShape()[0]:
             self.coord[1] = 0
         elif self.coord[0] < 0:
-            self.coord[0] = self.map.getMapShape()[0] - 1
-        elif self.coord[0] == self.map.getMapShape()[0]:
+            self.coord[0] = self.map.getMapShape()[1] - 1
+        elif self.coord[0] == self.map.getMapShape()[1]:
             self.coord[0] = 0
 
     def turnAround(self):
@@ -131,15 +130,15 @@ class moonRover():
             
         
         if localCoord[0] == -1:
-            localCoord[0] = self.map.getMapShape()[0]-1
+            localCoord[0] = self.map.getMapShape()[1]-1
             
         elif localCoord[1] == -1:
-            localCoord[1] = self.map.getMapShape()[1]-1
+            localCoord[1] = self.map.getMapShape()[0]-1
             
-        elif localCoord[0] == self.map.getMapShape()[0]:
-            
+        elif localCoord[0] == self.map.getMapShape()[1]:
             localCoord[0] = 0
-        elif localCoord[1] == self.map.getMapShape()[1]:
+            
+        elif localCoord[1] == self.map.getMapShape()[0]:
             localCoord[1] = 0
                         
         return localCoord
