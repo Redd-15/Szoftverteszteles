@@ -29,10 +29,10 @@ class map():
 
     def __init__(self, inputMap="00000000|00000000|00000000|00000000|00000000|00000000|00000000|00000000|"):
 
+        countLines = inputMap.count('|')
+        countRows = round((len(inputMap)-countLines)/countLines)
         
-        MAPSHAPE = (8,8)
-
-        self.shape = MAPSHAPE
+        self.shape = (countLines,countRows)
         self.map = np.zeros(self.shape)
         
         x = 0
@@ -50,6 +50,9 @@ class map():
                 
     def getMap(self):
         return self.map
+    
+    def getMapShape(self):
+        return self.shape
     
     def getMapAsString(self):
         output = ""

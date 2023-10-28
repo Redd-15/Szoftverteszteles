@@ -50,8 +50,13 @@ class TestSum(unittest.TestCase):
     def test_init_given_8x8_map(self):
        givenMap = "00010000|00010000|00010000|00010000|00010000|00010000|00010000|00010000|"
        myMap = moonRover.map(givenMap)
-       
        self.assertEqual(myMap.getMapAsString(), givenMap)
+       
+    def test_init_given_10x9_map(self):
+       givenMap = "000100001|000100001|000100001|000100001|000100001|000100001|000100001|000100001|000100001|000100001|"
+       myMap = moonRover.map(givenMap)
+       self.assertEqual(myMap.getMapAsString(), givenMap)
+       self.assertEqual(myMap.getMapShape(), (10,9))
 
 if __name__ == '__main__':
     unittest.main()
