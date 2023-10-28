@@ -39,6 +39,12 @@ class moonRover():
             
         self.direction = dirs[dirID]
         
+    
+    def checkObstacle(self, map):
+        if map.getMapInCoord(self.getCoordInFront()) == 1:
+            return True
+        else:
+            return False
 
     def getCoordInFront(self):
         localCoord = self.coord
@@ -88,6 +94,9 @@ class map():
                 
     def getMap(self):
         return self.map
+    
+    def getMapInCoord(self, coord):
+        return self.map[coord[0], coord[1]]
     
     def getMapShape(self):
         return self.shape
