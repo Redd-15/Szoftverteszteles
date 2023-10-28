@@ -9,6 +9,14 @@ class self_driving_module():
         for i in range(self.rover.map.getMapShape()[1]-1):
             self.rover.step("f")
         
+    def drive_full_length_circle(self):
+        for i in range(self.rover.map.getMapShape()[1]-1):
+            self.rover.step("f")
+        self.rover.turn("r")
+        self.rover.step("f")
+        self.rover.turn("r")
+        for i in range(self.rover.map.getMapShape()[1]-1):
+            self.rover.step("f")
 
 class moonRover():
 
@@ -18,14 +26,29 @@ class moonRover():
         self.map = map.fromShape(mapSize)
 
     def step(self, dir):
+        add = 0
         if dir == "f":
-            self.coord[1] = self.coord[1] + 1
-            if self.coord[1] == self.map.getMapShape()[1]:
-                self.coord[1] = 0
+            add = 1
         elif dir == "b":
-            self.coord[1] = self.coord[1] - 1
-            if self.coord[1] == -1:
-                self.coord[1] = self.map.getMapShape()[1] - 1
+            add = -1
+        
+        if self.direction == "N":
+            self.coord[1] = self.coord[1] + add
+        if self.direction == "S":
+            self.coord[1] = self.coord[1] - add
+        if self.direction == "E":
+            self.coord[0] = self.coord[0] + add
+        if self.direction == "W":
+            self.coord[0] = self.coord[0] - add
+        
+        if self.coord[1] == -1:
+            self.coord[1] = self.map.getMapShape()[1] - 1
+        elif self.coord[1] == self.map.getMapShape()[1]:
+            self.coord[1] = 0
+        elif self.coord[0] == -1:
+            self.coord[0] = self.map.getMapShape()[0] - 1
+        elif self.coord[0] == self.map.getMapShape()[0]:
+            self.coord[0] = 0
 
     def turn(self, dir):
         dirs = ["N","E","S","W"]
