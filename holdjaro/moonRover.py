@@ -19,10 +19,26 @@ class moonRover():
                 self.coord[1] = self.mapShape[1] - 1
 
     def turn(self, dir):
+        dirs = ["N","E","S","W"]
+        dirID = 0
+        
+        for i in range(4):
+            if self.direction == dirs[i]:
+                dirID = i
+                break
+        
         if dir == "l":
-            self.direction = "W"
+            dirID -= 1
         elif dir == "r":
-            self.direction = "E"
+            dirID += 1
+        
+        if dirID == -1:
+            dirID = 3
+        elif dirID == 4:
+            dirID = 0
+            
+        self.direction = dirs[dirID]
+        
 
     def getCoordInFront(self):
         localCoord = self.coord
@@ -36,6 +52,15 @@ class moonRover():
         elif self.direction == "W":
             localCoord[1] -=1
         
+        if localCoord[0] == -1:
+            localCoord[0] = self.mapShape[0]-1
+        elif localCoord[1] == -1:
+            localCoord[1] = self.mapShape[1]-1
+        elif localCoord[0] == self.mapShape[0]:
+            localCoord[0] = 0
+        elif localCoord[1] == self.mapShape[1]:
+            localCoord[1] = 0
+                        
         return localCoord
 
 class map():
