@@ -12,40 +12,49 @@ class self_driving_module():
     def drive_full_length_circle(self):
         for i in range(self.rover.map.getMapShape()[1]-1):
             self.rover.step("f")
-        self.rover.turn("r")
+        self.rover.turn("l")
         self.rover.step("f")
-        self.rover.turn("r")
+        self.rover.turn("l")
         for i in range(self.rover.map.getMapShape()[1]-1):
             self.rover.step("f")
 
 class moonRover():
 
-    def __init__(self, mapSize):
+    def __init__(self, mapSize, RealMap:map):
         self.coord = [0, 0]
         self.direction = "N"
         self.map = map.fromShape(mapSize)
+        self.RealMap = RealMap
 
     def step(self, dir):
+        
+        self.map.modify(self.coord, 5)
+        print(self.map.map)
+        
         add = 0
         if dir == "f":
             add = 1
+            if self.checkObstacle():
+                return
+            
         elif dir == "b":
             add = -1
         
         if self.direction == "N":
             self.coord[1] = self.coord[1] + add
-        if self.direction == "S":
+        elif self.direction == "S":
             self.coord[1] = self.coord[1] - add
-        if self.direction == "E":
+        elif self.direction == "W":
             self.coord[0] = self.coord[0] + add
-        if self.direction == "W":
+        elif self.direction == "E":
             self.coord[0] = self.coord[0] - add
         
-        if self.coord[1] == -1:
+        
+        if self.coord[1] < 0:
             self.coord[1] = self.map.getMapShape()[1] - 1
         elif self.coord[1] == self.map.getMapShape()[1]:
             self.coord[1] = 0
-        elif self.coord[0] == -1:
+        elif self.coord[0] < 0:
             self.coord[0] = self.map.getMapShape()[0] - 1
         elif self.coord[0] == self.map.getMapShape()[0]:
             self.coord[0] = 0
@@ -72,29 +81,36 @@ class moonRover():
         self.direction = dirs[dirID]
         
     
-    def checkObstacle(self, map):
-        if map.getMapInCoord(self.getCoordInFront()) == 1:
+    def checkObstacle(self):
+        if round(self.RealMap.getMapInCoord(self.getCoordInFront())) == 1:
             return True
         else:
             return False
 
     def getCoordInFront(self):
-        localCoord = self.coord
+        localCoord = [self.coord[0], self.coord[1]]
         
         if self.direction == "N":
-            localCoord[0] +=1
+            localCoord[1] += 1
+            
         elif self.direction == "S":
-            localCoord[0] -=1
-        elif self.direction == "E":
-            localCoord[1] +=1
+            localCoord[1] -= 1
+        
         elif self.direction == "W":
-            localCoord[1] -=1
+            localCoord[0] += 1    
+        
+        elif self.direction == "E":
+            localCoord[0] -= 1
+            
         
         if localCoord[0] == -1:
             localCoord[0] = self.map.getMapShape()[0]-1
+            
         elif localCoord[1] == -1:
             localCoord[1] = self.map.getMapShape()[1]-1
+            
         elif localCoord[0] == self.map.getMapShape()[0]:
+            
             localCoord[0] = 0
         elif localCoord[1] == self.map.getMapShape()[1]:
             localCoord[1] = 0
@@ -121,7 +137,7 @@ class map():
             else:
                 self.map[x, y] = i
                 y = y+1
-        
+    
     @classmethod    
     def fromShape(cls, inputshape):            
         mapstring = ""
@@ -132,12 +148,14 @@ class map():
             
         return map(mapstring)
             
+    def modify(self, coords, item):
+        self.map[coords[1], coords[0]] = item
                 
     def getMap(self):
         return self.map
     
     def getMapInCoord(self, coord):
-        return self.map[coord[0], coord[1]]
+        return self.map[coord[1], coord[0]]
     
     def getMapShape(self):
         return self.shape
@@ -145,9 +163,9 @@ class map():
     def getMapAsString(self):
         output = ""
         
-        for i in range(self.map.shape[0]):
+        for y in range(self.map.shape[0]):
             for x in range(self.map.shape[1]):
-                output += str(round(self.map[i,x]))
+                output += str(round(self.map[y,x]))
             output += "|"
         
         return output
@@ -155,5 +173,14 @@ class map():
 if __name__ == '__main__':
     
     myMap = map("00010000|00010000|00010000|00010000|00010000|00010000|00010000|00010000|")
-    myMoonRover = moonRover(myMap.shape)
+    myMoonRover = moonRover(myMap.shape, myMap)
     print(myMap.getMapAsString())
+    
+    givenMap = "00010000|00010000|00010000|00010000|00010000|00010000|00010000|00010000|"
+    myMap = map(givenMap)
+    rover = moonRover(myMap.getMapShape(), myMap)
+    rover.coord = [2,2]
+    rover.turn("l")
+    #rover.turn("r")
+    print(rover.direction)
+    print(rover.getCoordInFront())
