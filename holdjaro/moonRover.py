@@ -1,6 +1,5 @@
 import numpy as np
 
-
 class moonRover():
 
     def __init__(self, mapSize):
@@ -28,9 +27,9 @@ class moonRover():
 
 class map():
 
-    def __init__(self):
+    def __init__(self, inputMap="00000000|00000000|00000000|00000000|00000000|00000000|00000000|00000000|"):
 
-        MAP = "00000000|00000000|00000000|00000000|00000000|00000000|00000000|00000000|"
+        
         MAPSHAPE = (8,8)
 
         self.shape = MAPSHAPE
@@ -38,15 +37,32 @@ class map():
         
         x = 0
         y = 0
-        for i in MAP:
-            if i == "0":
-                self.map[x, y] = i
-                x = x+1
-            if i == "|":
-                y = y+1
-                x = 0
-
         
-
-myMap = map()
-myMoonRover = moonRover(myMap.shape)
+        print(inputMap)
+        for i in inputMap:
+            if i == "|":
+                x = x+1
+                y = 0
+            else:
+                self.map[x, y] = i
+                y = y+1
+            
+                
+    def getMap(self):
+        return self.map
+    
+    def getMapAsString(self):
+        output = ""
+        
+        for i in range(self.map.shape[0]):
+            for x in range(self.map.shape[1]):
+                output += str(round(self.map[i,x]))
+            output += "|"
+        
+        return output
+            
+if __name__ == '__main__':
+    
+    myMap = map("00010000|00010000|00010000|00010000|00010000|00010000|00010000|00010000|")
+    myMoonRover = moonRover(myMap.shape)
+    print(myMap.getMapAsString())
