@@ -81,6 +81,14 @@ class TestSum(unittest.TestCase):
         rover.turn("r")
         self.assertEqual(rover.checkObstacle(myMap), True)
         
+    def test_obstacle_detection_2(self):
+        givenMap = "10000000|01000000|00100000|00010000|00001000|00000100|00000010|00000001|"
+        myMap = moonRover.map(givenMap)
+        rover = moonRover.moonRover(myMap.getMapShape())
+        rover.coord = [1,0]
+        rover.turn("l")
+        self.assertEqual(rover.checkObstacle(myMap), False)
+        
         
 if __name__ == '__main__':
     unittest.main()
