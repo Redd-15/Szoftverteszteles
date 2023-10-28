@@ -5,6 +5,10 @@ class self_driving_module():
         self.rover = rover
         self.map = map
         
+    def drive_full_length(self):
+        for i in range(self.rover.map.getMapShape()[1]-1):
+            self.rover.step("f")
+        
 
 class moonRover():
 
