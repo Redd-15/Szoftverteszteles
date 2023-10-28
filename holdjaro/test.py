@@ -128,5 +128,13 @@ class TestSum(unittest.TestCase):
         self.assertEqual(sdm.rover.map.getMapAsString(), outputMap)
         self.assertEqual(sdm.rover.coord, [1,7])
         
+    def test_full_self_driving_movement_1(self):
+        givenMap = "00000000|01000000|00000000|00010000|00000000|00000100|00000000|00000001|"
+        outputMap ="55555555|51555555|55555555|55515555|55555555|55555155|55555555|55555551|"
+        myMap = mr.map(givenMap)
+        rover = mr.moonRover(myMap.getMapShape(), myMap)
+        sdm = mr.self_driving_module(rover, myMap)
+        sdm.drive_full_map()
+        self.assertEqual(sdm.rover.map.getMapAsString(), outputMap)
 if __name__ == '__main__':
     unittest.main()

@@ -17,6 +17,13 @@ class self_driving_module():
         self.rover.turn("l")
         for i in range(self.rover.map.getMapShape()[1]-1):
             self.rover.step("f")
+            
+    def drive_full_map(self):
+        while self.rover.map.getMapAsString().count("0") > 0:
+            for i in range(self.rover.map.getMapShape()[1]-1):
+                self.rover.step("f")
+            self.rover.turnAround()
+            print(self.rover.map.map)
 
 class moonRover():
 
@@ -57,6 +64,16 @@ class moonRover():
         elif self.coord[0] == self.map.getMapShape()[0]:
             self.coord[0] = 0
 
+    def turnAround(self):
+        if self.direction == "N":
+            self.turn("l")
+            self.step("f")
+            self.turn("l")
+        elif self.direction == "S":
+            self.turn("r")
+            self.step("f")
+            self.turn("r")
+        
     def turn(self, dir):
         dirs = ["N","E","S","W"]
         dirID = 0
