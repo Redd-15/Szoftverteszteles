@@ -27,14 +27,12 @@ class moonRover():
         self.RealMap = RealMap
 
     def step(self, dir):
-        
-        self.map.modify(self.coord, 5)
-        print(self.map.map)
-        
+                
         add = 0
         if dir == "f":
             add = 1
             if self.checkObstacle():
+                self.obstacleAvoidance()
                 return
             
         elif dir == "b":
@@ -80,12 +78,24 @@ class moonRover():
             
         self.direction = dirs[dirID]
         
-    
     def checkObstacle(self):
+        
         if round(self.RealMap.getMapInCoord(self.getCoordInFront())) == 1:
+            self.map.modify(self.getCoordInFront(), 1)
             return True
         else:
+            self.map.modify(self.getCoordInFront(), 5)
             return False
+
+    def obstacleAvoidance(self):
+        self.turn("l")
+        self.step("f")
+        self.turn("r")
+        self.step("f")
+        self.step("f")
+        self.turn("r")
+        self.step("f")
+        self.turn("l")
 
     def getCoordInFront(self):
         localCoord = [self.coord[0], self.coord[1]]
