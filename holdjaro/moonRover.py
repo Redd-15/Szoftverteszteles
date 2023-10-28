@@ -1,22 +1,27 @@
 import numpy as np
 
+class self_driving_module():
+    def __init__(self, rover, map):
+        self.rover = rover
+        self.map = map
+        
+
 class moonRover():
 
     def __init__(self, mapSize):
         self.coord = [0, 0]
         self.direction = "N"
-        self.mapShape = mapSize
-        self.map = np.zeros(self.mapShape)
+        self.map = map.fromShape(mapSize)
 
     def step(self, dir):
         if dir == "f":
             self.coord[1] = self.coord[1] + 1
-            if self.coord[1] == self.mapShape[1]:
+            if self.coord[1] == self.map.getMapShape()[1]:
                 self.coord[1] = 0
         elif dir == "b":
             self.coord[1] = self.coord[1] - 1
             if self.coord[1] == -1:
-                self.coord[1] = self.mapShape[1] - 1
+                self.coord[1] = self.map.getMapShape()[1] - 1
 
     def turn(self, dir):
         dirs = ["N","E","S","W"]
@@ -59,12 +64,12 @@ class moonRover():
             localCoord[1] -=1
         
         if localCoord[0] == -1:
-            localCoord[0] = self.mapShape[0]-1
+            localCoord[0] = self.map.getMapShape()[0]-1
         elif localCoord[1] == -1:
-            localCoord[1] = self.mapShape[1]-1
-        elif localCoord[0] == self.mapShape[0]:
+            localCoord[1] = self.map.getMapShape()[1]-1
+        elif localCoord[0] == self.map.getMapShape()[0]:
             localCoord[0] = 0
-        elif localCoord[1] == self.mapShape[1]:
+        elif localCoord[1] == self.map.getMapShape()[1]:
             localCoord[1] = 0
                         
         return localCoord
@@ -82,7 +87,6 @@ class map():
         x = 0
         y = 0
         
-        print(inputMap)
         for i in inputMap:
             if i == "|":
                 x = x+1
@@ -90,6 +94,16 @@ class map():
             else:
                 self.map[x, y] = i
                 y = y+1
+        
+    @classmethod    
+    def fromShape(cls, inputshape):            
+        mapstring = ""
+        for i in range(inputshape[0]):
+            for x in range(inputshape[1]):
+                mapstring += "0"
+            mapstring += "|"
+            
+        return map(mapstring)
             
                 
     def getMap(self):
