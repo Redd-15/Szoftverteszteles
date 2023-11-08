@@ -1,7 +1,7 @@
 import unittest
 import holdjaro as h
 
-class TestSum(unittest.TestCase):
+class TestRover(unittest.TestCase):
     
     def test_forward_step(self):
         myMap = h.map()
@@ -45,6 +45,15 @@ class TestSum(unittest.TestCase):
         x.turn("r")
         self.assertEqual(x.coord,[0,0])
         self.assertEqual(x.direction, "E")
+
+    def test_turn_left_twice(self):
+        myMap = h.map()
+        x = h.moonRover(myMap.shape)
+        x.coord = [0,0]
+        x.turn("l")
+        x.turn("l")
+        self.assertEqual(x.coord,[0,0])
+        self.assertEqual(x.direction, "S")
 
 if __name__ == '__main__':
     unittest.main()

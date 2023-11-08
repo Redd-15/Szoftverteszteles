@@ -25,7 +25,6 @@ class moonRover():
         elif dir == "r":
             self.direction = "E"
 
-
 class map():
 
     def __init__(self):
